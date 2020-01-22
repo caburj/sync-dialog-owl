@@ -1,0 +1,28 @@
+<templates>
+   <t t-name="Modal">
+      <Portal target="'body'">
+         <div class="owl-modal-supercontainer">
+            <div class="owl-modal-backdrop"></div>
+            <div class="owl-modal-container">
+               <t t-slot="default" />
+            </div>
+         </div>
+      </Portal>
+   </t>
+
+   <t t-name="SimplePrompt">
+      <Modal>
+         <div class="owl-dialog-body">
+            <div t-esc="message"></div>
+            <input t-on-keyup="enterOrEsc" type="text" t-ref="input" />
+            <button t-on-click="ok">Ok</button>
+            <button t-on-click="cancel">Cancel</button>
+         </div>
+      </Modal>
+   </t>
+
+   <div t-name="App">
+      <div t-esc="state.text" />
+      <button t-on-click="getUserName">Click to enter your name</button>
+   </div>
+</templates>
