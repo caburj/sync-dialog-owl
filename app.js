@@ -54,6 +54,9 @@ class SimplePrompt extends Component {
     }
 }
 SimplePrompt.components = { Modal };
+SimplePrompt.show = async function(message) {
+    return await showDialog(SimplePrompt, { message });
+}
 
 async function showDialog(dialogComponent, props) {
     try {
@@ -74,10 +77,6 @@ async function showDialog(dialogComponent, props) {
     }
 }
 
-async function showSimplePrompt(message) {
-    return await showDialog(SimplePrompt, { message });
-}
-
 //------------------------------------------------------------------------------
 // App declaration
 //------------------------------------------------------------------------------
@@ -91,9 +90,9 @@ class App extends Component {
     }
     async getUserName() {
         try {
-            let name = await showSimplePrompt("What is your name?");
+            let name = await SimplePrompt.show("What is your name?");
             while (name === "Joseph") {
-                name = await showSimplePrompt(
+                name = await SimplePrompt.show(
                     "That's not a valid name. Try again."
                 );
             }
